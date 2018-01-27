@@ -29,3 +29,6 @@ import { We7RouterModule,We7RouterOutletComponent} from 'meepo-we7-router';
 })
 export class AppModule { }
 ```
+
+
+- [demo](https://meepo.com.cn/app/index.php?i=2&c=entry&do=index&m=meepo_wxapp)

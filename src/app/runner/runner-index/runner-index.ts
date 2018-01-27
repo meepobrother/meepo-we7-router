@@ -12,6 +12,6 @@ export class RunnerAppIndexComponent implements OnInit {
     ngOnInit() { }
 
     goPost() {
-        this.router.go('/app/index.php?i=2&c=entry&do=post&m=imeepos_runner');
+        this.router.go('/app/index.php?i=2&c=entry&do=post&m=meepo_wxapp');
     }
 }
