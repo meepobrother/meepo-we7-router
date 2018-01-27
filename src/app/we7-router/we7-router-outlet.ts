@@ -15,7 +15,7 @@ export interface We7Route {
     component: Type<any>;
 }
 export type We7Routes = We7Route[];
-
+import { We7RouterService } from './we7-router.service';
 @Component({
     selector: 'we7-router-outlet',
     template: `<ng-container *ngComponentOutlet="component"></ng-container>`,
@@ -30,7 +30,8 @@ export class We7RouterOutletComponent {
         _location: ViewContainerRef,
         _resolver: ComponentFactoryResolver,
         @Inject(WE7_ROUTES) routes: any,
-        private location: Location
+        private location: Location,
+        private service: We7RouterService
     ) {
         this.viewContainerRef = _location;
         this.componentFactoryResolver = _resolver;

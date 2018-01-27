@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
+import { We7RouterService } from '../../we7-router/we7-router.service';
 
 @Component({
     selector: 'runner-index',
@@ -7,12 +7,12 @@ import { Location } from '@angular/common';
 })
 export class RunnerPostComponent implements OnInit {
     constructor(
-        private router: Location
+        private router: We7RouterService
     ) { }
 
     ngOnInit() { }
 
     goIndex() {
-        this.router.go('/app/index.php?i=2&c=entry&do=index&m=meepo_wxapp');
+        this.router.go('index');
     }
 }

@@ -25,7 +25,7 @@ export class MyLocation extends Location {
     }
 }
 
-
+import { We7RouterService } from './we7-router.service';
 @NgModule({
     imports: [
         CommonModule
@@ -45,7 +45,8 @@ export class MyLocation extends Location {
         {
             provide: LocationStrategy,
             useClass: PathLocationStrategy
-        }
+        },
+        We7RouterService
     ],
 })
 export class We7RouterModule {
