@@ -5,6 +5,9 @@
     "author": "imeepos <1037483576@qq.com>",
     "license": "MIT",
     "private": false,
+    "scripts": {
+        "git": "git add . && git commit -m 'push to save' && git push origin master"
+    },
     "peerDependencies": {
         "@angular/core": "*",
         "@angular/common": "*",

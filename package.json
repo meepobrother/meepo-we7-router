@@ -9,7 +9,8 @@
     "build:we7": "ng build --prod --deploy-url={MODULE_URL}template/mobile/",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "git": "git add . && git commit -m 'push to save' && git push origin master"
   },
   "private": true,
   "dependencies": {
