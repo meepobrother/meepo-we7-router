@@ -39,10 +39,11 @@ export class We7RouterOutletComponent {
         routesFlatten.map((res: We7Route, index) => {
             this.routes.set(res.path, res.component);
         });
-        this.location.subscribe(() => {
+        console.log(this.location);
+        (<any>this.location).change$.subscribe(res => {
             this.update();
         });
-        (<any>this.location).change$.subscribe(res => {
+        this.location.subscribe(() => {
             this.update();
         });
         this.update();

@@ -8,10 +8,14 @@ export class We7RouterService {
         private location: Location
     ) { }
 
-    go(__do: string, __pramas?: { [k: string]: string }) {
+    go(__do: string, __pramas?: { [k: string]: string }, isMobile: boolean = true) {
         __pramas = __pramas || {};
         __pramas = { ...__pramas, ...{ do: __do } };
-        this.location.go(`/app/index.php${this.puts(__pramas)}`);
+        if (isMobile) {
+            this.location.go(`/app/index.php${this.puts(__pramas)}`);
+        } else {
+            this.location.go(`/web/index.php${this.puts(__pramas)}`);
+        }
     }
 
     get(name: string): string {
