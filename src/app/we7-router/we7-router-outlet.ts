@@ -22,24 +22,23 @@ import { We7RouterService } from './we7-router.service';
     exportAs: 'we7Outlet'
 })
 export class We7RouterOutletComponent {
-    private routes: Map<string, Type<any>> = new Map();
+    private routes: Map<string, any> = new Map();
     viewContainerRef: ViewContainerRef;
     componentFactoryResolver: ComponentFactoryResolver;
     component: Type<any>;
     constructor(
         _location: ViewContainerRef,
         _resolver: ComponentFactoryResolver,
-        @Inject(WE7_ROUTES) routes: any,
+        @Inject(WE7_ROUTES) private __routes: any,
         private location: Location,
         private service: We7RouterService
     ) {
         this.viewContainerRef = _location;
         this.componentFactoryResolver = _resolver;
-        const routesFlatten = flatten(routes);
+        const routesFlatten = flatten(this.__routes);
         routesFlatten.map((res: We7Route, index) => {
-            this.routes.set(res.path, res.component);
+            this.routes.set(res.path, res);
         });
-        console.log(this.location);
         (<any>this.location).change$.subscribe(res => {
             this.update();
         });
@@ -52,7 +51,21 @@ export class We7RouterOutletComponent {
     update() {
         const params = parseURL();
         const _do = params.do || 'index';
-        const component = this.routes.get(_do);
-        this.component = component;
+        let res = this.routes.get(_do);
+        if (res) {
+            if (res.login) {
+                if (!this.checkLogin()) {
+                    localStorage.setItem('login.success', _do);
+                    res = this.routes.get('login');
+                }
+            }
+        } else {
+            res = this.routes.get('index');
+        }
+        this.component = res.component;
+    }
+
+    checkLogin() {
+        return sessionStorage.uid > 0;
     }
 }

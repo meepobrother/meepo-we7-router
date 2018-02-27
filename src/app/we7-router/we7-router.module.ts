@@ -9,22 +9,7 @@ import {
     We7RouterOutletComponent
 } from './we7-router-outlet';
 
-import { Subject } from 'rxjs/Subject';
-
-export class MyLocation extends Location {
-    change$: Subject<any> = new Subject();
-    constructor(locationStrategy: LocationStrategy) {
-        super(locationStrategy);
-    }
-    go(path: string, query?: string) {
-        super.go(path, query);
-        this.change$.next({
-            path: path,
-            query: query
-        });
-    }
-}
-
+import { MyLocation } from './my-location';
 import { We7RouterService } from './we7-router.service';
 @NgModule({
     imports: [

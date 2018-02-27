@@ -26,7 +26,11 @@ export class We7RouterService {
     put(name: string, value: any, loc?: string) {
         const parse = parseURL();
         loc = loc || location.search;
-        loc = loc.replace(`${name}=${parse[name]}`, `${name}=${value}`);
+        if (loc.indexOf(`${name}=`) > -1) {
+            loc = loc.replace(`${name}=${parse[name]}`, `${name}=${value}`);
+        } else {
+            loc = `${loc}&${name}=${value}`;
+        }
         return loc;
     }
 
