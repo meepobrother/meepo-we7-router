@@ -1,12 +1,7 @@
 import { Injectable, InjectionToken, Inject } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-export interface EnvInterface {
-    path: string;
-    c: string;
-    a: string;
-    m: string;
-}
-export const ENV = new InjectionToken<EnvInterface>('env');
+import { ENV } from './token';
+
 @Injectable()
 export class We7RouterService {
     params: any = {};
