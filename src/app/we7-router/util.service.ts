@@ -59,8 +59,9 @@ export class We7UtilService {
     getMobileUrl(_do: string, _params: any = {}) {
         _params['c'] = 'entry';
         _params['a'] = 'site';
-        _params['i'] = this.get('i') ? this.get('i') : this.environment.i;
+        _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.environment.i;
         _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
+        console.log(_params);
         const url = '/app/index.php' + this.getUrl(_do, _params);
         if (isDevMode()) {
             return 'https://meepo.com.cn' + url;
@@ -72,7 +73,7 @@ export class We7UtilService {
         _params['c'] = 'site';
         _params['a'] = 'entry';
         _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
-        _params['i'] = this.get('i') ? this.get('i') : this.getUniacid();
+        _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.getUniacid();
         const url = '/web/index.php' + this.getUrl(_do, _params);
         if (isDevMode()) {
             return 'https://meepo.com.cn' + url;
@@ -84,7 +85,7 @@ export class We7UtilService {
         _params['c'] = 'entry';
         _params['a'] = 'webapp';
         _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
-        _params['i'] = this.get('i') ? this.get('i') : this.getUniacid();
+        _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.getUniacid();
         const url = '/app/index.php' + this.getUrl(_do, _params);
         if (isDevMode()) {
             return 'https://meepo.com.cn' + url;
@@ -96,8 +97,12 @@ export class We7UtilService {
         _params['a'] = this.environment.a;
         _params['c'] = this.environment.c;
         _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
-        _params['i'] = this.get('i') ? this.get('i') : this.getUniacid();
-        return `/${this.environment.path}/index.php${this.getUrl(_do, _params)}`;
+        _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.getUniacid();
+        const url = `/${this.environment.path}/index.php${this.getUrl(_do, _params)}`;
+        if (isDevMode()) {
+            return 'https://meepo.com.cn' + url;
+        }
+        return url;
     }
 
     serializeQueryParams(params: { [key: string]: any }): string {
