@@ -4,3 +4,5 @@ cd ${currentDir}
 rm -rf dist
 
 $(npm bin)/ng-packagr -p ./src/app/we7-router/package.json
+
+# sh build.sh&& cd dist/ && npm publish && yarn git

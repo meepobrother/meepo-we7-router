@@ -57,10 +57,10 @@ export class We7UtilService {
     }
 
     getMobileUrl(_do: string, _params: any = {}) {
+        console.log(_params);
         _params['c'] = 'entry';
         _params['a'] = 'site';
         _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.environment.i;
-        _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
         console.log(_params);
         const url = '/app/index.php' + this.getUrl(_do, _params);
         if (isDevMode()) {
@@ -72,7 +72,6 @@ export class We7UtilService {
     getWebUrl(_do: string, _params: any = {}) {
         _params['c'] = 'site';
         _params['a'] = 'entry';
-        _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
         _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.getUniacid();
         const url = '/web/index.php' + this.getUrl(_do, _params);
         if (isDevMode()) {
@@ -84,7 +83,6 @@ export class We7UtilService {
     getWebAppUrl(_do: string, _params: any = {}) {
         _params['c'] = 'entry';
         _params['a'] = 'webapp';
-        _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
         _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.getUniacid();
         const url = '/app/index.php' + this.getUrl(_do, _params);
         if (isDevMode()) {
@@ -96,7 +94,6 @@ export class We7UtilService {
     getSystemUrl(_do: string, _params: any = {}) {
         _params['a'] = this.environment.a;
         _params['c'] = this.environment.c;
-        _params['m'] = _params['m'] || this.get('m') ? this.get('m') : this.environment.m;
         _params['i'] = _params['i'] || this.get('i') ? this.get('i') : this.getUniacid();
         const url = `/${this.environment.path}/index.php${this.getUrl(_do, _params)}`;
         if (isDevMode()) {
