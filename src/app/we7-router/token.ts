@@ -1,4 +1,4 @@
-import { Inject } from '@angular/core';
+import { InjectionToken } from '@angular/core';
 
 export interface EnvInterface {
     path: string;
